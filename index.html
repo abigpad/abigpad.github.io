@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">       
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>abigpad</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./static/css/all.min.css">
+<link rel="shortcut icon" href="./static/img/favicon.ico" type="image/x-icon" />
+
+</head>
+
+<body>
+
+<div class="container">
+	<div class="row" style="margin-top: 80px;">
+		<div class="col-md-4 col-md-offset-4">
+			<form action="##" onsubmit="return false" method="post" id="sign-up-form" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+				<h2>abigpad</h2>
+				<div class="form-group">
+					<label for="username" class="sr-only">Username</label>
+					<input type="text" class="form-control" id="username" placeholder="用户名" autocomplete="off">
+				</div>
+				<div class="form-group">
+					<label for="password" class="sr-only">Password</label>
+					<input type="password" class="form-control" id="password" placeholder="密码" autocomplete="off">
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary btn-block" onclick="submitData()">登录</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="row" style="padding-top: 60px; clear: both;">
+		<div class="col-md-12 text-center">
+			<p>
+				<small>&copy; All Rights Reserved. abigpad</small>
+			</p>
+		</div>
+	</div>
+</div>
+
+<div id="particles-js">	
+	<canvas class="particles-js-canvas-el" width="1903" height="880" style="width: 100%; height: 100%;"></canvas>
+</div>
+
+<script src="./static/js/all.min.js"></script>
+
+<script>
+	function submitData() {
+		$.ajax({
+			dataType: 'json',
+			type: 'POST',
+			url: '\/login',
+			async: 'true',
+			data: {
+				'username': $("#username").val(),
+				'password': $("#password").val()
+			},
+			success: function (data) {
+				location.href = data.data.url
+			},
+			error: function (data) {
+				alert($("#username").val()+"\n"+$("#password").val());
+			}
+		});
+	}
+</script>
+</body>
+</html>
